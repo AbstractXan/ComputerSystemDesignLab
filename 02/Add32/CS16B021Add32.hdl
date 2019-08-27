@@ -1,0 +1,8 @@
+CHIP CS16B021Add32 {
+    IN a[32], b[32];
+    OUT out[32],carry;
+
+    PARTS:
+    	CS16B021Add16Carry(a=a[0..15],b= b[0..15],c = false,out=out[0..15],carry=c);
+    	CS16B021Add16Carry(a=a[16..31],b= b[16..31],c = c,out=out[16..31],carry=d);
+}
