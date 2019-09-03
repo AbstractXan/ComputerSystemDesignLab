@@ -1,0 +1,39 @@
+/**
+ * A 8-bit counter with load and reset control bits.
+ * if      (reset[t] == 1) out[t+1] = 0
+ * else if (load[t] == 1)  out[t+1] = in[t]
+ * else if (inc[t] == 1)   out[t+1] = out[t] + 1  (integer addition)
+ * else                    out[t+1] = out[t]
+ */
+
+CHIP PC8 {
+    IN in[8],load,inc0,inc1,reset;
+    OUT out[8];
+
+    PARTS:
+    	// Increment 
+  	// incd1 = 1
+    	Inc8(in[0..7]=false,out=incd1);
+    	// incd2 = 2
+    	Inc8(in=incd,out=incd2);
+    	// incd4 = 4
+    	Add8(a=incd2,b=inc2,out=incd4);
+  
+  	// Choose increment
+	Mux4Way8(a[0..7]=false,b=incd1,c=incd2,d=incd4,sel[0]=inc0,sel[1]=inc1,out=inc);
+	
+	// Add inc to prev
+	Add8(a=inc,b=prevout,out=incd);  
+
+	// Mux via sel=inc
+	Mux8(a=prevout,b=incd,sel=inc,out=first);
+
+	// Mux via load flag
+	Mux8(a=first,b=in,sel=load,out=second);
+
+	// Mux via reset flag
+	Mux8(a=second,b[0..7]=false,sel=reset,out=this);
+	
+	// Store output, Send output
+	Register(in=this,load=true,out=out,out=prevout);
+}
