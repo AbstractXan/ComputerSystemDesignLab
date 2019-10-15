@@ -1,0 +1,29 @@
+@0
+D=M
+@1
+D=D-M
+@EQUAL
+D;JEQ
+@LESS
+D;JLT
+@1
+D=A
+@2
+M=D
+@END
+0;JMP
+(EQUAL)
+@0
+D=A
+@2
+M=D
+@END
+0;JMP	
+(LESS)
+@2
+D=A
+@2
+M=D
+(END)
+	@END
+	0;JMP
