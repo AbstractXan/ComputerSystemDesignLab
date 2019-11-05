@@ -1,18 +1,26 @@
-//comment
-@13
+// Infinite program
+//Store address at 2
+@3
+D=A
+@2
+M=D
+//Begin at 3
+@3
+D=A
 (LOOP)
-	//Store A
-	D=A
-	//Unit digit and 
-	M=M&1
-	A=M 
-	//A = 0 if even, 1 if odd
+	//and at unit's place
+	A=D
+	D=1
+	D=M&D
+	
+	//update evens and odds
+	A=D 
 	M=M+1
-	A=D-1
-	@END	
-	A;JEQ
+	
+	//retrieve address
+	@2
+	M=M+1
+	D=M
+	
 	@LOOP
-	0;JMP
-(END)
-	@END
 	0;JMP

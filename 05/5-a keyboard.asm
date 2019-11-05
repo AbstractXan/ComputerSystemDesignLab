@@ -1,0 +1,9 @@
+(LOOP)
+
+@KBD
+D=M
+@24575
+M=D
+
+@LOOP
+0;JMP
