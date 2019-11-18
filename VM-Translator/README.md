@@ -2,7 +2,7 @@
 
 - Translates VM code to Hack Assembly Language
 
-Resource: <https://www.nand2tetris.org/project07}>
+Resource: <https://www.nand2tetris.org/project07>
 
 ## Running
 
