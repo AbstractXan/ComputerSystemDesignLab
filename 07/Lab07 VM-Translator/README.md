@@ -1,6 +1,7 @@
 # VM Translator
 
 - Translates VM code to Hack Assembly Language
+- Doesnot support function calls as of now
 
 Resource: <https://www.nand2tetris.org/project07>
 
